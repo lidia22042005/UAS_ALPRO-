@@ -1,98 +1,109 @@
-class Reservation:
-    def __init__(self, reservation_id, customer_name, room_number, check_in_date, check_out_date):
-        self.reservation_id = reservation_id
-        self.customer_name = customer_name
-        self.room_number = room_number
-        self.check_in_date = check_in_date
-        self.check_out_date = check_out_date
+               class Reservasi:
+    def __init__(self, id_reservasi, nama_pelanggan, nomor_kamar, tanggal_check_in, tanggal_check_out):
+        self.id_reservasi = id_reservasi
+        self.nama_pelanggan = nama_pelanggan
+        self.nomor_kamar = nomor_kamar
+        self.tanggal_check_in = tanggal_check_in
+        self.tanggal_check_out = tanggal_check_out
 
     def __str__(self):
-        return f"ID: {self.reservation_id}, Name: {self.customer_name}, Room: {self.room_number}, Check-In: {self.check_in_date}, Check-Out: {self.check_out_date}"
+        return f"ID: {self.id_reservasi}, Nama: {self.nama_pelanggan}, Kamar: {self.nomor_kamar}, Check-In: {self.tanggal_check_in}, Check-Out: {self.tanggal_check_out}"
 
 
-class HotelReservationSystem:
+class SistemReservasiHotel:
     def __init__(self):
-        self.reservations = []
+        self.reservasi = []
 
-    def add_reservation(self):
-        reservation_id = input("Enter Reservation ID: ")
-        customer_name = input("Enter Customer Name: ")
-        room_number = input("Enter Room Number: ")
-        check_in_date = input("Enter Check-In Date (YYYY-MM-DD): ")
-        check_out_date = input("Enter Check-Out Date (YYYY-MM-DD): ")
-        reservation = Reservation(reservation_id, customer_name, room_number, check_in_date, check_out_date)
-        self.reservations.append(reservation)
-        print("Reservation added successfully!\n")
+    def tambah_reservasi(self):
+        id_reservasi = input("Masukkan ID Reservasi: ")
+        nama_pelanggan = input("Masukkan Nama Pelanggan: ")
+        nomor_kamar = input("Masukkan Nomor Kamar: ")
+        tanggal_check_in = input("Masukkan Tanggal Check-In (YYYY-MM-DD): ")
+        tanggal_check_out = input("Masukkan Tanggal Check-Out (YYYY-MM-DD): ")
+        reservasi = Reservasi(id_reservasi, nama_pelanggan, nomor_kamar, tanggal_check_in, tanggal_check_out)
+        self.reservasi.append(reservasi)
+        print("Reservasi berhasil ditambahkan!\n")
 
-    def display_reservations(self):
-        if not self.reservations:
-            print("No reservations available.\n")
+    def tampilkan_reservasi(self):
+        if not self.reservasi:
+            print("Tidak ada reservasi yang tersedia.\n")
         else:
-            print("\nList of Reservations:")
-            for reservation in self.reservations:
-                print(reservation)
+            print("\nDaftar Reservasi:")
+            for reservasi in self.reservasi:
+                print(reservasi)
             print()
 
-    def delete_reservation(self):
-        reservation_id = input("Enter the Reservation ID to delete: ")
-        for reservation in self.reservations:
-            if reservation.reservation_id == reservation_id:
-                self.reservations.remove(reservation)
-                print("Reservation deleted successfully!\n")
+    def hapus_reservasi(self):
+        id_reservasi = input("Masukkan ID Reservasi yang ingin dihapus: ")
+        for reservasi in self.reservasi:
+            if reservasi.id_reservasi == id_reservasi:
+                self.reservasi.remove(reservasi)
+                print("Reservasi berhasil dihapus!\n")
                 return
-        print("Reservation not found.\n")
+        print("Reservasi tidak ditemukan.\n")
 
-    def update_reservation(self):
-        reservation_id = input("Enter the Reservation ID to update: ")
-        for reservation in self.reservations:
-            if reservation.reservation_id == reservation_id:
-                print("What would you like to update?")
-                print("1. Customer Name")
-                print("2. Room Number")
-                print("3. Check-In Date")
-                print("4. Check-Out Date")
-                choice = int(input("Enter your choice: "))
-                if choice == 1:
-                    reservation.customer_name = input("Enter new customer name: ")
-                elif choice == 2:
-                    reservation.room_number = input("Enter new room number: ")
-                elif choice == 3:
-                    reservation.check_in_date = input("Enter new check-in date (YYYY-MM-DD): ")
-                elif choice == 4:
-                    reservation.check_out_date = input("Enter new check-out date (YYYY-MM-DD): ")
+    def perbarui_reservasi(self):
+        id_reservasi = input("Masukkan ID Reservasi yang ingin diperbarui: ")
+        for reservasi in self.reservasi:
+            if reservasi.id_reservasi == id_reservasi:
+                print("Apa yang ingin Anda perbarui?")
+                print("1. Nama Pelanggan")
+                print("2. Nomor Kamar")
+                print("3. Tanggal Check-In")
+                print("4. Tanggal Check-Out")
+                pilihan = int(input("Masukkan pilihan Anda: "))
+                if pilihan == 1:
+                    reservasi.nama_pelanggan = input("Masukkan nama pelanggan baru: ")
+                elif pilihan == 2:
+                    reservasi.nomor_kamar = input("Masukkan nomor kamar baru: ")
+                elif pilihan == 3:
+                    reservasi.tanggal_check_in = input("Masukkan tanggal check-in baru (YYYY-MM-DD): ")
+                elif pilihan == 4:
+                    reservasi.tanggal_check_out = input("Masukkan tanggal check-out baru (YYYY-MM-DD): ")
                 else:
-                    print("Invalid choice.\n")
+                    print("Pilihan tidak valid.\n")
                     return
-                print("Reservation updated successfully!\n")
+                print("Reservasi berhasil diperbarui!\n")
                 return
-        print("Reservation not found.\n")
+        print("Reservasi tidak ditemukan.\n")
 
 
 def main():
-    system = HotelReservationSystem()
+    sistem = SistemReservasiHotel()
     while True:
-        print("Hotel Reservation System")
-        print("1. Add Reservation")
-        print("2. Display Reservations")
-        print("3. Delete Reservation")
-        print("4. Update Reservation")
-        print("5. Exit")
-        choice = int(input("Enter your choice: "))
+        print("Sistem Reservasi Hotel")
+        print("1. Tambah Reservasi")
+        print("2. Tampilkan Reservasi")
+        print("3. Hapus Reservasi")
+        print("4. Perbarui Reservasi")
+        print("5. Keluar")
+        pilihan = int(input("Masukkan pilihan Anda: "))
 
-        if choice == 1:
-            system.add_reservation()
-        elif choice == 2:
-            system.display_reservations()
-        elif choice == 3:
-            system.delete_reservation()
-        elif choice == 4:
-            system.update_reservation()
-        elif choice == 5:
-            print("Exiting the system. Goodbye!")
+        if pilihan == 1:
+            sistem.tambah_reservasi()
+        elif pilihan == 2:
+            sistem.tampilkan_reservasi()
+        elif pilihan == 3:
+            sistem.hapus_reservasi()
+        elif pilihan == 4:
+            sistem.perbarui_reservasi()
+        elif pilihan == 5:
+            print("Keluar dari sistem. Sampai jumpa!")
             break
         else:
-            print("Invalid choice. Please try again.\n")
+            print("Pilihan tidak valid. Silakan coba lagi.\n")
 
 
 if __name__ == "__main__":
     main()
+
+
+Output
+
+Sistem Reservasi Hotel
+1. Tambah Reservasi
+2. Tampilkan Reservasi
+3. Hapus Reservasi
+4. Perbarui Reservasi
+5. Keluar
+Masukkan pilihan Anda: 
