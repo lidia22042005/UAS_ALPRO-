@@ -6,90 +6,100 @@ class Product:
         self.price = price
 
     def __str__(self):
-        return f"ID: {self.product_id}, Name: {self.name}, Quantity: {self.quantity}, Price: {self.price}"
+        return f"ID: {self.product_id}, Nama: {self.name}, Jumlah: {self.quantity}, Harga: {self.price}"
 
 
-class WarehouseManagementSystem:
+class SistemManajemenGudang:
     def __init__(self):
-        self.products = []
+        self.produk = []
 
-    def add_product(self):
-        product_id = input("Enter Product ID: ")
-        name = input("Enter Product Name: ")
-        quantity = int(input("Enter Product Quantity: "))
-        price = float(input("Enter Product Price: "))
-        product = Product(product_id, name, quantity, price)
-        self.products.append(product)
-        print("Product added successfully!\n")
+    def tambah_produk(self):
+        product_id = input("Masukkan ID Produk: ")
+        name = input("Masukkan Nama Produk: ")
+        quantity = int(input("Masukkan Jumlah Produk: "))
+        price = float(input("Masukkan Harga Produk: "))
+        produk = Product(product_id, name, quantity, price)
+        self.produk.append(produk)
+        print("Produk berhasil ditambahkan!\n")
 
-    def display_products(self):
-        if not self.products:
-            print("No products available.\n")
+    def tampilkan_produk(self):
+        if not self.produk:
+            print("Tidak ada produk yang tersedia.\n")
         else:
-            print("\nList of Products:")
-            for product in self.products:
-                print(product)
+            print("\nDaftar Produk:")
+            for produk in self.produk:
+                print(produk)
             print()
 
-    def delete_product(self):
-        product_id = input("Enter the Product ID to delete: ")
-        for product in self.products:
-            if product.product_id == product_id:
-                self.products.remove(product)
-                print("Product deleted successfully!\n")
+    def hapus_produk(self):
+        product_id = input("Masukkan ID Produk yang ingin dihapus: ")
+        for produk in self.produk:
+            if produk.product_id == product_id:
+                self.produk.remove(produk)
+                print("Produk berhasil dihapus!\n")
                 return
-        print("Product not found.\n")
+        print("Produk tidak ditemukan.\n")
 
-    def update_product(self):
-        product_id = input("Enter the Product ID to update: ")
-        for product in self.products:
-            if product.product_id == product_id:
-                print("What would you like to update?")
-                print("1. Name")
-                print("2. Quantity")
-                print("3. Price")
-                choice = int(input("Enter your choice: "))
-                if choice == 1:
-                    product.name = input("Enter new name: ")
-                elif choice == 2:
-                    product.quantity = int(input("Enter new quantity: "))
-                elif choice == 3:
-                    product.price = float(input("Enter new price: "))
+    def perbarui_produk(self):
+        product_id = input("Masukkan ID Produk yang ingin diperbarui: ")
+        for produk in self.produk:
+            if produk.product_id == product_id:
+                print("Apa yang ingin Anda perbarui?")
+                print("1. Nama")
+                print("2. Jumlah")
+                print("3. Harga")
+                pilihan = int(input("Masukkan pilihan Anda: "))
+                if pilihan == 1:
+                    produk.name = input("Masukkan nama baru: ")
+                elif pilihan == 2:
+                    produk.quantity = int(input("Masukkan jumlah baru: "))
+                elif pilihan == 3:
+                    produk.price = float(input("Masukkan harga baru: "))
                 else:
-                    print("Invalid choice.\n")
+                    print("Pilihan tidak valid.\n")
                     return
-                print("Product updated successfully!\n")
+                print("Produk berhasil diperbarui!\n")
                 return
-        print("Product not found.\n")
+        print("Produk tidak ditemukan.\n")
 
 
 def main():
-    system = WarehouseManagementSystem()
+    sistem = SistemManajemenGudang()
     while True:
-        print("Warehouse Management System")
-        print("1. Add Product")
-        print("2. Display Products")
-        print("3. Delete Product")
-        print("4. Update Product")
-        print("5. Exit")
-        choice = int(input("Enter your choice: "))
+        print("Sistem Manajemen Gudang")
+        print("1. Tambah Produk")
+        print("2. Tampilkan Produk")
+        print("3. Hapus Produk")
+        print("4. Perbarui Produk")
+        print("5. Keluar")
+        pilihan = int(input("Masukkan pilihan Anda: "))
 
-        if choice == 1:
-            system.add_product()
-        elif choice == 2:
-            system.display_products()
-        elif choice == 3:
-            system.delete_product()
-        elif choice == 4:
-            system.update_product()
-        elif choice == 5:
-            print("Exiting the system. Goodbye!")
+        if pilihan == 1:
+            sistem.tambah_produk()
+        elif pilihan == 2:
+            sistem.tampilkan_produk()
+        elif pilihan == 3:
+            sistem.hapus_produk()
+        elif pilihan == 4:
+            sistem.perbarui_produk()
+        elif pilihan == 5:
+            print("Keluar dari sistem. Sampai jumpa!")
             break
         else:
-            print("Invalid choice. Please try again.\n")
+            print("Pilihan tidak valid. Silakan coba lagi.\n")
 
 
 if __name__ == "__main__":
     main()
-    
-   
+
+
+
+
+OUTPUT 
+Sistem Manajemen Gudang
+1. Tambah Produk
+2. Tampilkan Produk
+3. Hapus Produk
+4. Perbarui Produk
+5. Keluar
+Masukkan pilihan Anda: 
