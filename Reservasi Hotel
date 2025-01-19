@@ -1,0 +1,98 @@
+class Reservation:
+    def __init__(self, reservation_id, customer_name, room_number, check_in_date, check_out_date):
+        self.reservation_id = reservation_id
+        self.customer_name = customer_name
+        self.room_number = room_number
+        self.check_in_date = check_in_date
+        self.check_out_date = check_out_date
+
+    def __str__(self):
+        return f"ID: {self.reservation_id}, Name: {self.customer_name}, Room: {self.room_number}, Check-In: {self.check_in_date}, Check-Out: {self.check_out_date}"
+
+
+class HotelReservationSystem:
+    def __init__(self):
+        self.reservations = []
+
+    def add_reservation(self):
+        reservation_id = input("Enter Reservation ID: ")
+        customer_name = input("Enter Customer Name: ")
+        room_number = input("Enter Room Number: ")
+        check_in_date = input("Enter Check-In Date (YYYY-MM-DD): ")
+        check_out_date = input("Enter Check-Out Date (YYYY-MM-DD): ")
+        reservation = Reservation(reservation_id, customer_name, room_number, check_in_date, check_out_date)
+        self.reservations.append(reservation)
+        print("Reservation added successfully!\n")
+
+    def display_reservations(self):
+        if not self.reservations:
+            print("No reservations available.\n")
+        else:
+            print("\nList of Reservations:")
+            for reservation in self.reservations:
+                print(reservation)
+            print()
+
+    def delete_reservation(self):
+        reservation_id = input("Enter the Reservation ID to delete: ")
+        for reservation in self.reservations:
+            if reservation.reservation_id == reservation_id:
+                self.reservations.remove(reservation)
+                print("Reservation deleted successfully!\n")
+                return
+        print("Reservation not found.\n")
+
+    def update_reservation(self):
+        reservation_id = input("Enter the Reservation ID to update: ")
+        for reservation in self.reservations:
+            if reservation.reservation_id == reservation_id:
+                print("What would you like to update?")
+                print("1. Customer Name")
+                print("2. Room Number")
+                print("3. Check-In Date")
+                print("4. Check-Out Date")
+                choice = int(input("Enter your choice: "))
+                if choice == 1:
+                    reservation.customer_name = input("Enter new customer name: ")
+                elif choice == 2:
+                    reservation.room_number = input("Enter new room number: ")
+                elif choice == 3:
+                    reservation.check_in_date = input("Enter new check-in date (YYYY-MM-DD): ")
+                elif choice == 4:
+                    reservation.check_out_date = input("Enter new check-out date (YYYY-MM-DD): ")
+                else:
+                    print("Invalid choice.\n")
+                    return
+                print("Reservation updated successfully!\n")
+                return
+        print("Reservation not found.\n")
+
+
+def main():
+    system = HotelReservationSystem()
+    while True:
+        print("Hotel Reservation System")
+        print("1. Add Reservation")
+        print("2. Display Reservations")
+        print("3. Delete Reservation")
+        print("4. Update Reservation")
+        print("5. Exit")
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            system.add_reservation()
+        elif choice == 2:
+            system.display_reservations()
+        elif choice == 3:
+            system.delete_reservation()
+        elif choice == 4:
+            system.update_reservation()
+        elif choice == 5:
+            print("Exiting the system. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.\n")
+
+
+if __name__ == "__main__":
+    main()
